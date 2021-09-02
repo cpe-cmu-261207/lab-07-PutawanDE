@@ -1,18 +1,20 @@
-import { PixelPainterStore } from "../stores/PixelPainterStore"
+import { PixelPainterStore, updateCanvas } from "../stores/PixelPainterStore";
 
-type CellProps = {
+export type CellProps = {
   x: number;
   y: number;
-}
+};
 
 const Cell = ({ x, y }: CellProps) => {
-
-  const state = PixelPainterStore.useState()
+  const state = PixelPainterStore.useState();
 
   return (
-    <td className="w-6 h-6 cursor-pointer" style={{backgroundColor: state.canvas[y][x]}}>
-    </td>
-  )
-}
+    <td
+      className="w-6 h-6 cursor-pointer"
+      style={{ backgroundColor: state.canvas[y][x] }}
+      onClick={() => updateCanvas({ x, y })}
+    ></td>
+  );
+};
 
-export default Cell
+export default Cell;

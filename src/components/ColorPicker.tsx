@@ -1,26 +1,23 @@
-import SelectColorButton from "./SelectColorButton"
+import CanvasConfig from "./CanvasConfig";
+import SelectColorButton from "./SelectColorButton";
 
 const ColorPicker = () => {
+  const colors = CanvasConfig.colorPalette;
+
   return (
     <div>
       <div className="mx-auto my-4 flex justify-center space-x-4">
-          <SelectColorButton color='#000000' />
-          <SelectColorButton color='#804000' />
-          <SelectColorButton color='#FE0000' />
-          <SelectColorButton color='#FE6A00' />
-          <SelectColorButton color='#FFD800' />
-          <SelectColorButton color='#00FF01' />
-        </div>
-        <div className="mx-auto my-4 flex justify-center space-x-4">
-          <SelectColorButton color='#FFFFFF' />
-          <SelectColorButton color='#01FFFF' />
-          <SelectColorButton color='#0094FE' />
-          <SelectColorButton color='#0026FF' />
-          <SelectColorButton color='#B100FE' />
-          <SelectColorButton color='#FF006E' />
-        </div>
+        {colors.slice(0, Math.ceil(colors.length / 2)).map((c) => (
+          <SelectColorButton key={c} color={c} />
+        ))}
+      </div>
+      <div className="mx-auto my-4 flex justify-center space-x-4">
+        {colors.slice(Math.ceil(colors.length / 2), colors.length).map((c) => (
+          <SelectColorButton key={c} color={c} />
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default ColorPicker
+export default ColorPicker;
